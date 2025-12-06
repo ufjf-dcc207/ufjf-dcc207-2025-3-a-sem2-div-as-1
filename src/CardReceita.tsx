@@ -12,6 +12,8 @@ type CardReceitaProps = {
 
 export default function CardReceita({ nome, ingredientes, preparo, imagem, dificuldade, tempo }: CardReceitaProps) {
     const [mostrarBox, setMostrarBox] = useState(false);
+    const [comentario, setComentario] = useState("");
+    const [estrela, setEstrela] = useState(0);
 
     function abrirAvaliacao() {
       setMostrarBox(true);
@@ -40,7 +42,10 @@ export default function CardReceita({ nome, ingredientes, preparo, imagem, dific
 
         <button onClick={abrirAvaliacao}>Avaliar</button>
 
-        <BoxAvaliacao estado={mostrarBox} fechar={fecharAvaliacao}/>
+        <BoxAvaliacao key={nome} estado={mostrarBox} fechar={fecharAvaliacao} estrela={estrela}
+        setEstrela={setEstrela}
+        comentario={comentario}
+        setComentario={setComentario}/>
       </li>
     );
 }

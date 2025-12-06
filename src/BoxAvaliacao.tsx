@@ -1,16 +1,16 @@
-import { useState } from "react";
 import { Estrela } from "./Estrela";
 import "./BoxAvaliacao.css"
 
 type BoxAvaliacaoProps = {
   estado: boolean;
   fechar: () => void;
-}
+  estrela: number;
+  setEstrela: (v: number) => void;
+  comentario: string;
+  setComentario: (v: string) => void;
+};
 
-export default function BoxAvaliacao({ estado, fechar }: BoxAvaliacaoProps){
-    const [estrela, setEstrela] = useState(0);
-    const [comentario, setComentario] = useState("");
-
+export default function BoxAvaliacao({ estado, fechar, estrela, setEstrela, comentario, setComentario }: BoxAvaliacaoProps){
     if(!estado){
         return null;
     }
