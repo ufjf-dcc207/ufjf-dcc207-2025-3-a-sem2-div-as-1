@@ -1,3 +1,4 @@
+import "./BoxAvaliacao.css"
 type BoxAvaliacaoProps = {
     estado: boolean;
     fechar: () => void;
