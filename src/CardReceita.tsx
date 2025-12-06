@@ -17,10 +17,12 @@ export default function CardReceita({ nome, ingredientes, preparo, imagem, dific
 
     function abrirAvaliacao() {
       setMostrarBox(true);
+      document.body.classList.add("no-scroll");
     }
 
     function fecharAvaliacao() {
       setMostrarBox(false);
+      document.body.classList.remove("no-scroll");
     }
 
     return (
