@@ -1,3 +1,6 @@
+import { useState } from "react";
+import BoxAvaliacao from "./BoxAvaliacao";
+
 type CardReceitaProps = {
   nome: string;
   ingredientes: string[];
@@ -7,14 +10,17 @@ type CardReceitaProps = {
   tempo: string;
 };
 
-
-
 export default function CardReceita({ nome, ingredientes, preparo, imagem, dificuldade, tempo }: CardReceitaProps) {
-  
-  function avaliacao(){
+  const [mostrarBox, setMostrarBox] = useState(false);
 
+  function abrirAvaliacao() {
+    setMostrarBox(true);
   }
-  
+
+  function fecharAvaliacao() {
+    setMostrarBox(false);
+  }
+
   return (
     <li className="card-receita">
       {imagem && <img src={imagem} alt={nome} className="imagem-receita" />}
@@ -31,7 +37,10 @@ export default function CardReceita({ nome, ingredientes, preparo, imagem, dific
       <h4>Modo de Preparo:</h4>
       <p>{preparo}</p>
       <p id="extra">Dificuldade: {dificuldade} | Tempo: {tempo}</p>
-      <button onClick={avaliacao}>Avaliar</button>
+
+      <button onClick={abrirAvaliacao}>Avaliar</button>
+
+      <BoxAvaliacao estado={mostrarBox} fechar={fecharAvaliacao}/>
     </li>
   );
 }
