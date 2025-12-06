@@ -26,6 +26,7 @@ export default function CardReceita({ nome, ingredientes, preparo, imagem, dific
         {imagem && <img src={imagem} alt={nome} className="imagem-receita" />}
 
         <h3>{nome}</h3>
+        <p id="extra">Dificuldade: {dificuldade} | Tempo: {tempo}</p>
 
         <h4>Ingredientes:</h4>
         <ul>
@@ -36,7 +37,6 @@ export default function CardReceita({ nome, ingredientes, preparo, imagem, dific
 
         <h4>Modo de Preparo:</h4>
         <p>{preparo}</p>
-        <p id="extra">Dificuldade: {dificuldade} | Tempo: {tempo}</p>
 
         <button onClick={abrirAvaliacao}>Avaliar</button>
 

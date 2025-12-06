@@ -9,6 +9,57 @@
 
 .box {
   background: white;
-  padding: 20px;
-  border-radius: 8px;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 3px 8px rgba(109, 40, 217, 0.15);
+  width: 420px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; 
+  align-items: center;
+}
+
+.box p {
+  font-size: 1.2rem;
+  color: #5b21b6;
+  font-weight: bold;
+  margin: 0;
+}
+
+.box button {
+  padding: 8px 20px;
+  color: white;
+  background-color: #5b21b6;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.box button:hover {
+  transform: scale(1.07);
+  cursor: pointer;
+}
+
+.comentario {
+  width: 100%;
+  height: 80px;
+  border-radius: 10px;
+  border: 1px solid #c4b5fd;
+  padding: 10px;
+  font-size: 0.95rem;
+  color: #3b0764;
+  resize: none;
+  outline: none;
+  background: #ede9fe;
+}
+
+.comentario:focus {
+  border-color: #7c3aed;
+}
+
+.estrela {
+  font-size: 1.8rem;
 }
