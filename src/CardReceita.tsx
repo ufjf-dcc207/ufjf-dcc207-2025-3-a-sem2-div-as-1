@@ -42,7 +42,9 @@ export default function CardReceita({ nome, ingredientes, preparo, imagem, dific
         <h4>Modo de Preparo:</h4>
         <p>{preparo}</p>
 
-        <button onClick={abrirAvaliacao}>Avaliar</button>
+        <button className="botao-avaliar" onClick={abrirAvaliacao}>
+          Avaliar
+        </button>
 
         <BoxAvaliacao key={nome} estado={mostrarBox} fechar={fecharAvaliacao} estrela={estrela}
         setEstrela={setEstrela}

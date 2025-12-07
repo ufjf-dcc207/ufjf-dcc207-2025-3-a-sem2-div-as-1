@@ -141,3 +141,8 @@ button:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
+
+.botao-avaliar {
+  display: block;
+  margin: 0 auto;
+}
