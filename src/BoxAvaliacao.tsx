@@ -77,24 +77,29 @@ export default function BoxAvaliacao({ estado, fechar, estrela, setEstrela, come
     return (
       <div className="overlay">
         <div className="box" style={{ backgroundColor: corBox }}>
-          <p>Deixe sua avaliação!</p>
 
-          <Estrela icone="⭐" valor={estrela}/>
-          <div className="botoesEstrela">
-            <button onClick={diminuir}>-</button>
-            <button onClick={aumentar}>+</button>
-          </div>
-          
-          <textarea
-            className="comentario"
-            placeholder={texto}
-            value={comentario}
-            disabled={avaliacaoEnviada}
-            onChange={(e) => setComentario(e.target.value)}
-          />
+          {!avaliacaoEnviada && (
+            <>
+              <p>Deixe sua avaliação!</p>
+              <Estrela icone="⭐" valor={estrela}/>
+              <div className="botoesEstrela">
+                <button onClick={diminuir}>-</button>
+                <button onClick={aumentar}>+</button>
+              </div>
+                <textarea
+                  className="comentario"
+                  placeholder={texto}
+                  value={comentario}
+                  disabled={avaliacaoEnviada}
+                  onChange={(e) => setComentario(e.target.value)}
+              />
+            </>
+          )} 
+
          {avaliacaoEnviada ? (
             <>
               <p className="mensagem-agradecimento">Obrigada pela avaliação! 💜</p>
+
               <button onClick={avaliarNovamente}>Avaliar novamente</button>
               <button onClick={() => {
                 setAvaliacaoEnviada(false);
