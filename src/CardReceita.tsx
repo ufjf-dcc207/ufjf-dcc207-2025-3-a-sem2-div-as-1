@@ -53,3 +53,4 @@ export default function CardReceita({ nome, ingredientes, preparo, imagem, dific
       </li>
     );
 }
+

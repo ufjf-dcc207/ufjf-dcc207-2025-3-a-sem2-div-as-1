@@ -1,5 +1,6 @@
 import { Estrela } from "./Estrela";
 import "./BoxAvaliacao.css"
+import { useState } from "react";
 
 type BoxAvaliacaoProps = {
   estado: boolean;
@@ -11,6 +12,8 @@ type BoxAvaliacaoProps = {
 };
 
 export default function BoxAvaliacao({ estado, fechar, estrela, setEstrela, comentario, setComentario }: BoxAvaliacaoProps){  
+    const [avaliacaoEnviada, setAvaliacaoEnviada] = useState(false);
+    
     if(!estado){
         return null;
     }
@@ -37,6 +40,15 @@ export default function BoxAvaliacao({ estado, fechar, estrela, setEstrela, come
     function resetar(){
       setEstrela(0);
       setComentario("");
+    }
+
+    function enviar(){
+      setAvaliacaoEnviada(true);
+    }
+
+    function avaliarNovamente(){
+      resetar();
+      setAvaliacaoEnviada(false);
     }
 
     let corBox = "";
@@ -77,11 +89,24 @@ export default function BoxAvaliacao({ estado, fechar, estrela, setEstrela, come
             className="comentario"
             placeholder={texto}
             value={comentario}
+            disabled={avaliacaoEnviada}
             onChange={(e) => setComentario(e.target.value)}
           />
-          <button onClick={resetar}>Enviar comentário</button>
-
-          <button onClick={fechar}>Fechar</button>
+         {avaliacaoEnviada ? (
+            <>
+              <p className="mensagem-agradecimento">Obrigada pela avaliação! 💜</p>
+              <button onClick={avaliarNovamente}>Avaliar novamente</button>
+              <button onClick={() => {
+                setAvaliacaoEnviada(false);
+                fechar();
+              }}>Fechar</button>
+            </>
+          ) : (
+            <>
+              <button onClick={enviar}>Enviar comentário</button>
+              <button onClick={fechar}>Fechar</button>
+            </>
+          )}
         </div>
       </div>
     )
