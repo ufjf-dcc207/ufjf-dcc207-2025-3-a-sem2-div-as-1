@@ -19,6 +19,14 @@
                     "imagem": "/img/beijinho.jpg",
                     "dificuldade": "Fácil",
                     "tempo": "30min"
+                },
+                {
+                    "nomeReceita":"Cajuzinho",
+                    "ingredientes": ["1 lata de leite condensado","1 xícara de amendoin torrado e moído","4 colheres de sopa de chocolate em pó", "1 colher de sopa de manteiga","Açucar cristal", "Amendoins"],
+                    "preparo": "Misture o leite condensado, o amendoim moído, o chocolate e a manteiga em uma panela. Cozinhe em fogo baixo, mexendo até desgrudar do fundo. Deixe esfriar, enrole em formato de caju, passe no açúcar e finalize com um amendoim em cima.",
+                    "imagem": "/img/cajuzinho.jpg",
+                    "dificuldade":"Fácil",
+                    "tempo": "30min"
                 }
             ]
         },
@@ -40,6 +48,14 @@
                     "imagem": "/img/tortafrango.jpg",
                     "dificuldade": "Médio",
                     "tempo": "1h30min"
+                },
+                {
+                    "nomeReceita":"Pão de Queijo",
+                    "ingredientes":["2 xícaras de polvilho azedo", "1 xícara de leite", "1/2 xícara de óleo", "1 ovo", "1 xícara de queijo ralado", "1/2 colher de chá de sal"],
+                    "preparo": "Aqueça o leite e o óleo até ferver. Despeje sobre o polvilho e misture bem. Adicione o ovo, o queijo e o sal, e mexa até formar uma massa homogênea. Modele bolinhas e asse em forno pré-aquecido a 180°C por cerca de 25 minutos.",
+                    "imagem": "/img/paodequeijo.jpg",
+                    "dificuldade":"Médio",
+                    "tempo": "40min"
                 }
             ]
         }
