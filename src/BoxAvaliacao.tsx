@@ -93,7 +93,7 @@ export default function BoxAvaliacao({ estado, fechar, estrela, setEstrela, come
             </>
           ) : (
             <>
-              <button onClick={enviar}>Enviar comentário</button>
+              <button onClick={enviar}>Enviar avaliação</button>
               <button onClick={fechar}>Fechar</button>
             </>
           )}
