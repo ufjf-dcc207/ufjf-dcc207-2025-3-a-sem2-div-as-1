@@ -1,5 +1,6 @@
 import { useState } from "react";
 import BoxAvaliacao from "./BoxAvaliacao";
+import { Estrela } from "./Estrela";
 
 type CardReceitaProps = {
   nome: string;
@@ -11,11 +12,15 @@ type CardReceitaProps = {
 };
 
 export default function CardReceita({ nome, ingredientes, preparo, imagem, dificuldade, tempo }: CardReceitaProps) {
+    const [estrela, setEstrela] = useState(0);
+    const [avaliacaoEnviada, setAvaliacaoEnviada] = useState(false);
     const [mostrarBox, setMostrarBox] = useState(false);
     const [comentario, setComentario] = useState("");
-    const [estrela, setEstrela] = useState(0);
 
     function abrirAvaliacao() {
+      if(avaliacaoEnviada)
+          return;
+      
       setMostrarBox(true);
       document.body.classList.add("no-scroll");
     }
@@ -28,6 +33,10 @@ export default function CardReceita({ nome, ingredientes, preparo, imagem, dific
     return (
       <li className="card-receita">
         {imagem && <img src={imagem} alt={nome} className="imagem-receita" />}
+
+        <div className="estrela-card">
+          <Estrela icone="⭐" valor={estrela}/>
+        </div>
 
         <h3>{nome}</h3>
         <p id="extra">Dificuldade: {dificuldade} | Tempo: {tempo}</p>
@@ -42,14 +51,20 @@ export default function CardReceita({ nome, ingredientes, preparo, imagem, dific
         <h4>Modo de Preparo:</h4>
         <p>{preparo}</p>
 
-        <button className="botao-avaliar" onClick={abrirAvaliacao}>
-          Avaliar
+        <button className="botao-avaliar" onClick={abrirAvaliacao} disabled={avaliacaoEnviada}>
+          Avalie esta receita!
         </button>
 
-        <BoxAvaliacao key={nome} estado={mostrarBox} fechar={fecharAvaliacao} estrela={estrela}
-        setEstrela={setEstrela}
-        comentario={comentario}
-        setComentario={setComentario}/>
+        <BoxAvaliacao
+          key={nome}
+          estado={mostrarBox}
+          fechar={fecharAvaliacao}
+          estrela={estrela}
+          setEstrela={setEstrela}
+          comentario={comentario}
+          setComentario={setComentario}
+          avaliacaoEnviada={avaliacaoEnviada}
+          setAvaliacaoEnviada={setAvaliacaoEnviada}/>
       </li>
     );
 }

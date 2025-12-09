@@ -1,6 +1,5 @@
 import { Estrela } from "./Estrela";
 import "./BoxAvaliacao.css"
-import { useState } from "react";
 
 type BoxAvaliacaoProps = {
   estado: boolean;
@@ -9,25 +8,14 @@ type BoxAvaliacaoProps = {
   setEstrela: (v: number) => void;
   comentario: string;
   setComentario: (v: string) => void;
+  avaliacaoEnviada: boolean;
+  setAvaliacaoEnviada: (v: boolean) => void;
 };
 
-export default function BoxAvaliacao({ estado, fechar, estrela, setEstrela, comentario, setComentario }: BoxAvaliacaoProps){  
-    const [avaliacaoEnviada, setAvaliacaoEnviada] = useState(false);
-    
+export default function BoxAvaliacao({ estado, fechar, estrela, setEstrela, comentario, setComentario, avaliacaoEnviada, setAvaliacaoEnviada }: BoxAvaliacaoProps){  
     if(!estado){
         return null;
     }
-
-    let situacao = "neutro";
-
-    if(estrela === 1)
-      situacao = "ruim";
-      
-    if(estrela === 2)
-      situacao = "ok";
-
-    if(estrela === 3)
-      situacao = "bom";
 
     function aumentar(){
       setEstrela(Math.min(3, estrela + 1));
@@ -37,17 +25,11 @@ export default function BoxAvaliacao({ estado, fechar, estrela, setEstrela, come
       setEstrela(Math.max(0, estrela - 1));
     }
 
-    function resetar(){
-      setEstrela(0);
-      setComentario("");
-    }
-
     function enviar(){
       setAvaliacaoEnviada(true);
     }
 
     function avaliarNovamente(){
-      resetar();
       setAvaliacaoEnviada(false);
     }
 
@@ -73,6 +55,9 @@ export default function BoxAvaliacao({ estado, fechar, estrela, setEstrela, come
       corBox = "#5b21b6";
       texto = "Escreva seu comentário!"
     }
+
+    if(avaliacaoEnviada)
+      corBox = "#5b21b6";
     
     return (
       <div className="overlay">
@@ -100,9 +85,9 @@ export default function BoxAvaliacao({ estado, fechar, estrela, setEstrela, come
             <>
               <p className="mensagem-agradecimento">Obrigada pela avaliação! 💜</p>
 
-              <button onClick={avaliarNovamente}>Avaliar novamente</button>
+              <button onClick={avaliarNovamente}>Mudar avaliação</button>
               <button onClick={() => {
-                setAvaliacaoEnviada(false);
+                setAvaliacaoEnviada(true);
                 fechar();
               }}>Fechar</button>
             </>

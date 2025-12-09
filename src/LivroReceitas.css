@@ -146,3 +146,15 @@ button:hover {
   display: block;
   margin: 0 auto;
 }
+
+.botao-avaliar:disabled {
+    background-color: rgb(158, 158, 158);
+    cursor: not-allowed;
+}
+
+.card-receita .estrela-card .estrela {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-bottom: 0.2rem;
+}

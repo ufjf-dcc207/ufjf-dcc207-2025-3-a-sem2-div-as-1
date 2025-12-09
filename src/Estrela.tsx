@@ -10,5 +10,5 @@ export function Estrela({ icone, valor }: EstrelaProps){
         <div className="estrela">
             {icone.repeat(valor)}
             <span className="desabilitado">{icone.repeat(3 - valor)}</span>
-    </div>)
+        </div>)
 }
