@@ -158,3 +158,11 @@ button:hover {
     margin: 0 auto;
     margin-bottom: 0.2rem;
 }
+
+.estrela-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  width: 100%;
+}
