@@ -2,6 +2,12 @@ import { useState } from "react";
 import BoxAvaliacao from "./BoxAvaliacao";
 import { Estrela } from "./Estrela";
 
+type Avaliacao = {
+  estrela: number;
+  comentario: string;
+  enviada: boolean;
+};
+
 type CardReceitaProps = {
   nome: string;
   ingredientes: string[];
@@ -9,16 +15,17 @@ type CardReceitaProps = {
   imagem: string;
   dificuldade: string;
   tempo: string;
+  avaliacao?: Avaliacao;
+  salvarAvaliacao: ( nome: string, estrela: number, comentario: string) => void;
 };
 
-export default function CardReceita({ nome, ingredientes, preparo, imagem, dificuldade, tempo }: CardReceitaProps) {
+export default function CardReceita({ nome, ingredientes, preparo, imagem, dificuldade, tempo, avaliacao, salvarAvaliacao }: CardReceitaProps) {
     const [estrela, setEstrela] = useState(0);
-    const [avaliacaoEnviada, setAvaliacaoEnviada] = useState(false);
     const [mostrarBox, setMostrarBox] = useState(false);
     const [comentario, setComentario] = useState("");
 
     function abrirAvaliacao() {
-      if(avaliacaoEnviada)
+      if(avaliacao?.enviada)
           return;
       
       setMostrarBox(true);
@@ -28,6 +35,11 @@ export default function CardReceita({ nome, ingredientes, preparo, imagem, dific
     function fecharAvaliacao() {
       setMostrarBox(false);
       document.body.classList.remove("no-scroll");
+    }
+
+    function enviarAvaliacao(){
+      salvarAvaliacao(nome, estrela, comentario);
+      fecharAvaliacao();
     }
 
     return (
@@ -51,20 +63,19 @@ export default function CardReceita({ nome, ingredientes, preparo, imagem, dific
         <h4>Modo de Preparo:</h4>
         <p>{preparo}</p>
 
-        <button className="botao-avaliar" onClick={abrirAvaliacao} disabled={avaliacaoEnviada}>
+        <button className="botao-avaliar" onClick={abrirAvaliacao} disabled={avaliacao?.enviada}>
           Avalie esta receita!
         </button>
 
         <BoxAvaliacao
-          key={nome}
           estado={mostrarBox}
           fechar={fecharAvaliacao}
           estrela={estrela}
           setEstrela={setEstrela}
           comentario={comentario}
           setComentario={setComentario}
-          avaliacaoEnviada={avaliacaoEnviada}
-          setAvaliacaoEnviada={setAvaliacaoEnviada}/>
+          enviar={enviarAvaliacao}
+          />
       </li>
     );
 }

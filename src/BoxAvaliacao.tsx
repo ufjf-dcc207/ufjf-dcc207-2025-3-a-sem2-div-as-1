@@ -8,11 +8,10 @@ type BoxAvaliacaoProps = {
   setEstrela: (v: number) => void;
   comentario: string;
   setComentario: (v: string) => void;
-  avaliacaoEnviada: boolean;
-  setAvaliacaoEnviada: (v: boolean) => void;
+  enviar: () => void;
 };
 
-export default function BoxAvaliacao({ estado, fechar, estrela, setEstrela, comentario, setComentario, avaliacaoEnviada, setAvaliacaoEnviada }: BoxAvaliacaoProps){  
+export default function BoxAvaliacao({ estado, fechar, estrela, setEstrela, comentario, setComentario, enviar }: BoxAvaliacaoProps){  
     if(!estado){
         return null;
     }
@@ -23,14 +22,6 @@ export default function BoxAvaliacao({ estado, fechar, estrela, setEstrela, come
 
     function diminuir(){
       setEstrela(Math.max(0, estrela - 1));
-    }
-
-    function enviar(){
-      setAvaliacaoEnviada(true);
-    }
-
-    function avaliarNovamente(){
-      setAvaliacaoEnviada(false);
     }
 
     let corBox = "";
@@ -55,49 +46,28 @@ export default function BoxAvaliacao({ estado, fechar, estrela, setEstrela, come
       corBox = "#5b21b6";
       texto = "Escreva seu comentário!"
     }
-
-    if(avaliacaoEnviada)
-      corBox = "#5b21b6";
     
     return (
       <div className="overlay">
         <div className="box" style={{ backgroundColor: corBox }}>
+          <p>Deixe sua avaliação!</p>
+          <Estrela icone="⭐" valor={estrela}/>
+          
+            <div className="botoesEstrela">
+              <button onClick={diminuir}>-</button>
+              <button onClick={aumentar}>+</button>
+            </div>
 
-          {!avaliacaoEnviada && (
-            <>
-              <p>Deixe sua avaliação!</p>
-              <Estrela icone="⭐" valor={estrela}/>
-              <div className="botoesEstrela">
-                <button onClick={diminuir}>-</button>
-                <button onClick={aumentar}>+</button>
-              </div>
-                <textarea
-                  className="comentario"
-                  placeholder={texto}
-                  value={comentario}
-                  disabled={avaliacaoEnviada}
-                  onChange={(e) => setComentario(e.target.value)}
+            <textarea
+              className="comentario"
+              placeholder={texto}
+              value={comentario}
+              onChange={(e) => setComentario(e.target.value)}
               />
-            </>
-          )} 
 
-         {avaliacaoEnviada ? (
-            <>
-              <p className="mensagem-agradecimento">Obrigada pela avaliação! 💜</p>
-
-              <button onClick={avaliarNovamente}>Mudar avaliação</button>
-              <button onClick={() => {
-                setAvaliacaoEnviada(true);
-                fechar();
-              }}>Fechar</button>
-            </>
-          ) : (
-            <>
               <button onClick={enviar}>Enviar avaliação</button>
               <button onClick={fechar}>Fechar</button>
-            </>
-          )}
         </div>
       </div>
-    )
+    );
 }
