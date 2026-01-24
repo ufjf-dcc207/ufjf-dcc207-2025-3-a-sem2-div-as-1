@@ -1,8 +1,15 @@
 import json from "./data.json"
 import LivroReceitas from "./LivroReceitas";
 import "./App.css"
+import { useState } from "react";
 
 const data = json as LivroReceitas;
+
+export type Avaliacao = {
+  estrela: number;
+  comentario: string;
+  enviada: boolean;
+}
 
 export type LivroReceitas = {
     nomeLivro: string;
@@ -24,10 +31,26 @@ type CardReceita = {
 }
 
 function App() {
+  const [avaliacoes, setAvaliacoes] = useState<Record<string, Avaliacao>>({});
+  function salvarAvaliacao(nomeReceita: string, estrela: number, comentario: string){
+    setAvaliacoes((prev) => ({
+      ...prev,
+      [nomeReceita]: {
+        estrela,
+        comentario,
+        enviada: true,
+      },
+    }));
+  }
+
   return (
     <div>
       <h1>{data.nomeLivro}</h1>
-      <LivroReceitas livro={data}/>
+      <LivroReceitas 
+        livro={data}
+        avaliacoes={avaliacoes}
+        salvarAvaliacao={salvarAvaliacao}
+        />
     </div>
   )
 }

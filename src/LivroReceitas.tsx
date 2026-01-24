@@ -1,31 +1,15 @@
-import type { LivroReceitas } from "./App.tsx"
+import type { Avaliacao, LivroReceitas } from "./App.tsx"
 import "./LivroReceitas.css"
 import CardReceita from "./CardReceita";
-import { useState } from "react";
 
 type LivroReceitasProps = {
     livro: LivroReceitas;
-}
-
-type Avaliacao = {
-  estrela: number;
-  comentario: string;
-  enviada: boolean;
+    avaliacoes: Record<string, Avaliacao>;
+    salvarAvaliacao: (nome: string, estrela: number, comentario: string) => void;
 };
 
-export default function LivroReceitas({livro}: LivroReceitasProps) {
-  const [avaliacoes, setAvaliacoes] = useState<Record<string, Avaliacao>>({});
-
-  function salvarAvaliacao(nomeReceita: string, estrela: number, comentario: string){
-    setAvaliacoes((prev) => ({
-      ...prev,
-      [nomeReceita]: {
-        estrela,
-        comentario,
-        enviada: true,
-      },
-    }));
-  }
+export default function LivroReceitas({livro, avaliacoes, salvarAvaliacao,
+  }:LivroReceitasProps) {
     return (
         <div className="livro-receitas">
             {livro.categoria.map((c) => (<div key={c.nomeCategoria}><h2>{c.nomeCategoria}</h2>
